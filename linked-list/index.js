@@ -1,6 +1,11 @@
 // Implement classes Node and Linked List
 
-class Node {}
+class Node {
+	constructor(data, next) {
+		this.data = data;
+		this.next = next
+	}
+}
 
 class LinkedList {
 	constructor() {
@@ -35,7 +40,7 @@ describe('A Node', () => {
 	});
 });
 
-describe.skip('unshift(data)', () => {
+describe('unshift(data)', () => {
 	it('adds new node to start of list by correctly setting head and updating length.', () => {
 		const l = new LinkedList();
 		l.unshift('Kevin');

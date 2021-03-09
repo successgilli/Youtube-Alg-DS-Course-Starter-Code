@@ -8,7 +8,31 @@
 //   anagrams('Heart!', 'EARTH') --> True
 //   anagrams('lol', 'lolc') --> False
 
-function anagrams(stringA, stringB) {}
+function anagrams(stringA, stringB) {
+  const flitString = (str) => {
+    return str
+      .toLowerCase()
+      .replace(/[&\/\\#,+()$~%!.„'":*‚^_¤?<>|@ª{«»§}©®™ ]/g, "")
+      .split("");
+  };
+  const str1Array = flitString(stringA)
+  const str2Array = flitString(stringB);
+
+  if (str1Array.length !== str2Array.length) return false;
+
+  return str1Array
+    .map((item) => {
+      const indexToBeFound = str2Array.findIndex((item2) => item === item2);
+
+      if (indexToBeFound >= 0) {
+        str2Array.splice(indexToBeFound, 1);
+        return true;
+      }
+
+      return false;
+    })
+    .every((item) => item === true);
+}
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
@@ -37,6 +61,10 @@ mocha.setup("bdd");
 const { assert } = chai;
 
 describe("Anagrams", () => {
+  it("works if case sensitivity and non word characters NOT taken into account", () => {
+    assert.equal(anagrams("earthj", "heart"), false);
+  });
+
   it("works if case sensitivity and non word characters NOT taken into account", () => {
     assert.equal(anagrams("earth", "heart"), true);
 

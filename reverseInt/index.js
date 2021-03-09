@@ -7,7 +7,14 @@
 //   reverseInt(-13) === -31
 //   reverseInt(-100) === -1
 
-function reverseInt(n) {}
+function reverseInt(n) {
+  // const arrStr = String(n).split("").reverse();
+
+  // return arrStr.includes("-")
+  //   ? -Number(arrStr.join("").replace("-", ""))
+  //   : Number(arrStr.join(""));
+  return parseInt(String(n).split("").reverse().join(''))*Math.sign(n)
+}
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \

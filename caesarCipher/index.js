@@ -8,7 +8,41 @@
 // caeserCipher("abcd", 100) === "wxyz";
 // caeserCipher("gurer ner 9 qbtf!", 13) === "there are 9 dogs!"
 
-function caesarCipher(str, shift) {}
+function caesarCipher(str, shift) {
+  const generateCode = (shiftterm) => {
+    let biggerThat122 = 122 - shiftterm;
+    let newNumber;
+    switch (true) {
+      case biggerThat122 === 0:
+        newNumber = 122;
+        break;
+      case biggerThat122 < 0:
+        potentialNewShiftTerm = 96 + Math.abs(biggerThat122);
+        newNumber =
+          potentialNewShiftTerm >= 122
+            ? generateCode(potentialNewShiftTerm)
+            : potentialNewShiftTerm;
+        break;
+      case biggerThat122 > 0:
+        newNumber = shiftterm;
+        break;
+      default:
+        break;
+    }
+    return newNumber;
+  };
+
+  return str
+    .split("")
+    .map((item) => {
+      if (!/[a-z]/.test(item)) return item;
+
+      let shiftterm = item.charCodeAt() + shift;
+
+      return String.fromCharCode(generateCode(shiftterm));
+    })
+    .join("");
+}
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \

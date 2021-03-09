@@ -3,7 +3,17 @@
 // maxChar("I loveeeeeee noodles") === "e"
 // maxChar("1337") === "3"
 
-function maxChar(str) {}
+function maxChar(str) {
+  const dict = {};
+
+  str.split('').forEach((item) => dict[item] = item in dict ? dict[item] + 1 : 1);
+
+  const count = Object.values(dict)
+  const keys = Object.keys(dict);
+  const maxVal = Math.max(...count)
+
+  return keys[count.indexOf(maxVal)]
+}
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \

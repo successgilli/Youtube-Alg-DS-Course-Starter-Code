@@ -13,7 +13,13 @@
 //       ' ### '
 //       '#####'
 
-function pyramid(n) {}
+function pyramid(n) {
+  for (let i = 1; i <= n; i++) {
+    console.error(' '.repeat(Math.abs(n - i)) + '#'.repeat(Math.abs((2*i) - 1)) + ' '.repeat(Math.abs(n - i)))
+    console.log(' '.repeat(Math.abs(n - i)) + '#'.repeat(Math.abs((2*i) - 1)) + ' '.repeat(Math.abs(n - i)))
+    
+  }
+}
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
@@ -49,6 +55,7 @@ describe("Pyramid", () => {
     assert.equal(console.log.getCall(0).args[0], "  #  ");
     assert.equal(console.log.getCall(1).args[0], " ### ");
     assert.equal(console.log.getCall(2).args[0], "#####");
+    pyramid(20)
   });
 });
 
